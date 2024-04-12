@@ -5,5 +5,5 @@ const PORT = 3001;
 
 server.listen(PORT, () => {
     sequelize.sync({ force: true });
-    console.log('Server on port 3001');
+    console.log(`Server on port ${PORT}`);
 });
