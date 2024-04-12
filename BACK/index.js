@@ -1,5 +1,9 @@
 const server = require('./src/app');
+const { sequelize } = require('./src/db');
 
-server.listen(3001, () => {
+const PORT = 3001;
+
+server.listen(PORT, () => {
+    sequelize.sync({ force: true });
     console.log('Server on port 3001');
 });
