@@ -4,6 +4,6 @@ const { sequelize } = require('./src/db');
 const PORT = 3001;
 
 server.listen(PORT, () => {
-    sequelize.sync({ force: true });
+    sequelize.sync({ force: true });  //Setear a false cuando termines la app.
     console.log(`Server on port ${PORT}`);
 });
