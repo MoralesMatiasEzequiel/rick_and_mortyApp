@@ -1,6 +1,13 @@
-const userHandlers = require('./userHandlers');
+const { login } = require('./loginHandlers')
+const { getUsersHandler, postUserHandler, putUserHandler, deleteUserHandler} = require('./userHandlers');
+const charactersHandlers = require('./charactersHandlers');
 
 
 module.exports = {
-    userHandlers
-}
+    login, 
+    getUsersHandler, 
+    postUserHandler,
+    putUserHandler, 
+    deleteUserHandler,
+    charactersHandlers
+};
