@@ -18,4 +18,11 @@ usersRouter.get('/', async (req, res) => {
     return getUsersHandler(req, res);
 });
 
+usersRouter.post('/', postUserHandler);
+
+usersRouter.put('/', putUserHandler);
+
+usersRouter.delete('/:id', deleteUserHandler);
+
+
 module.exports = usersRouter;
