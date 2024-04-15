@@ -1,6 +1,7 @@
 const { login } = require('./loginHandlers');
 const { getUsersHandler, postUserHandler, putUserHandler, deleteUserHandler} = require('./userHandlers');
-const charactersHandlers = require('./charactersHandlers');
+const { getCharactersHandler, getCharByIdHandler } = require('./charactersHandlers');
+const { getCharFavHandlers, postCharFavHandlers, deleteCharFavHandlers } = require('./favoritesHandlers');
 
 
 module.exports = {
@@ -9,5 +10,9 @@ module.exports = {
     postUserHandler,
     putUserHandler, 
     deleteUserHandler,
-    charactersHandlers
+    getCharactersHandler,
+    getCharByIdHandler,
+    getCharFavHandlers,
+    postCharFavHandlers,
+    deleteCharFavHandlers
 };
