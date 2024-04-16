@@ -1,7 +1,6 @@
 const { getCharFav, postCharFav, deleteCharFav } = require('../controllers/favoritesCtrls');
 
 const getCharFavHandlers = async (req, res) => {
-
     try {
         const charFav = await getCharFav();
         if(charFav.length === 0){
@@ -31,7 +30,6 @@ const deleteCharFavHandlers = async(req, res) => {
     try {
         const deleteFav = await deleteCharFav(id);
         res.status(200).json(deleteFav);
-
     } catch (error) {
         res.status(400).send({ error: error.message });
     }

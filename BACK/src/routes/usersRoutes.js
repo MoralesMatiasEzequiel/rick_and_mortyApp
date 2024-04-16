@@ -22,7 +22,7 @@ usersRouter.get('/:id', getUserIdHandler);
 
 usersRouter.post('/', postUserHandler);
 
-usersRouter.put('/:id', putUserHandler);
+usersRouter.put('/', putUserHandler);
 
 usersRouter.delete('/:id', deleteUserHandler);
 

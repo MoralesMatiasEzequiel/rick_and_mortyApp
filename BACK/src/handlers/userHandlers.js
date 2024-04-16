@@ -56,13 +56,13 @@ const postUserHandler = async(req, res) => {
 };
 
 const putUserHandler = async(req, res) => {
-    const { id } = req.params;
-    const { name, nickname, email, emailVerified, password, active } = req.body;
+    // const { id } = req.params;
+    const { id, name, nickname, email, emailVerified, password, active } = req.body;
     try {
         if(!id) res.status(400).json({ error: 'Missing ID.' });
 
         const userUpdate = await putUser(id, name, nickname, email, emailVerified, password, active);
-        res.status(200).send(userUpdate);
+        res.status(200).json(userUpdate);
 
     } catch (error) {
         res.status(500).send({ error: error.message })

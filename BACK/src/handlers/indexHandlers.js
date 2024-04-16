@@ -1,4 +1,4 @@
-const { login } = require('./loginHandlers');
+const { login }  = require('./loginHandlers');
 const { getUsersHandler, getUserIdHandler, postUserHandler, putUserHandler, deleteUserHandler} = require('./userHandlers');
 const { getCharactersHandler, getCharByIdHandler } = require('./charactersHandlers');
 const { getCharFavHandlers, postCharFavHandlers, deleteCharFavHandlers } = require('./favoritesHandlers');

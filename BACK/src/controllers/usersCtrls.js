@@ -1,8 +1,12 @@
 const { User } = require('../db');
 
 const getUsers = async() => {
-    const users = await User.findAll();
-    return users;
+    try {
+        const users = await User.findAll();
+        return users;
+    } catch (error) {
+        return { error: error.message };
+    }
 };
 
 const getUsersId = async(id) => {
@@ -29,7 +33,7 @@ const postUser = async(name, nickname, email, emailVerified, password) => {
         return newUser;
         
     } catch (error) {
-        return("Error creating user:", error);
+        return { error: error.message };
     };
 };
 
@@ -39,17 +43,17 @@ const putUser = async(id, name, nickname, email, emailVerified, password, active
         if (!user) {
             throw new Error("User not found.");
         };
+
         const updatedUser = await user.update({
-            name: name !== null && name !== false ? name : user.name,
-            nickname: nickname !== null && nickname !== false ? nickname : user.nickname,
-            email: email !== null && email !== false ? email : user.email,
+            name: name || user.name,  //Si algo en name se actualiza, si no hay nada (seria undefined) no hay modificación.
+            nickname: nickname || user.nickname,
+            email: email || user.email,
             emailVerified: emailVerified !== undefined ? emailVerified : user.emailVerified,
-            password: password !== null && password !== false ? password : user.password,
+            password: password || user.password,
             active: active !== undefined ? active : user.active
         }, { where: { id: id }
         });
-        return updatedUser;
-        
+        return updatedUser;       
     } catch (error) {
         return { error: error.message };
     }
