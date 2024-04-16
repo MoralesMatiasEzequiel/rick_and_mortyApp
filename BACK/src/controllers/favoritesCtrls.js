@@ -1,4 +1,4 @@
-const { Favorite } = require('../db');
+const { Favorite, User } = require('../db');
 
 const getCharFav = async() => {
     try {     
@@ -9,9 +9,9 @@ const getCharFav = async() => {
     };
 };
 
-const postCharFav = async(id, name, status, species, gender, origin, image) => {
+const postCharFav = async(id, name, status, species, gender, origin, image, userId) => {
     try {       
-        const charFav = {
+        const newCharFav = await Favorite.create({
             id,
             name,
             status,
@@ -19,8 +19,10 @@ const postCharFav = async(id, name, status, species, gender, origin, image) => {
             gender,
             origin,
             image
-        };
-        const newCharFav = await Favorite.create(charFav);
+        });
+        const user = await User.findByPk(userId);
+        await user.addFavorite(newCharFav);
+        // const charFav = await newCharFav.setUser(userId)
         return newCharFav;
     } catch (error) {
         return { error: error.message };

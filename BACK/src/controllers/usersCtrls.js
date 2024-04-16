@@ -13,7 +13,7 @@ const getUsersId = async(id) => {
     try {
         const user = await User.findByPk(id);
         if (!user) {
-            throw new Error("ID does not exist.");
+            throw new Error("There is no user related to that ID.");
         };        
         return usersId;
     } catch (error) {

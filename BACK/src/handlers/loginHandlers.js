@@ -37,7 +37,7 @@ const login = async(req, res) => {
         //     return res.status(403).send('Incorrect password')
         // };
         // console.log(user);
-        res.status(200).send(user);
+        res.status(200).json(user);
 
     } catch (error) {
         res.status(400).send({ error: error.message });

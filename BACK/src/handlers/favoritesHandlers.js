@@ -13,12 +13,12 @@ const getCharFavHandlers = async (req, res) => {
 };
 
 const postCharFavHandlers = async(req, res) => {
-    const { id, name, status, species, gender, origin, image } = req.body;
+    const { id, name, status, species, gender, origin, image, userId } = req.body;
     try {
-        if(!id || !name || !status || !species || !gender || !origin || !image){
+        if(!id || !name || !status || !species || !gender || !origin || !image || !userId){
             return res.status(401).send('Missing data')
         };
-        const createCharFav = await postCharFav(id, name, status, species, gender, origin, image);
+        const createCharFav = await postCharFav(id, name, status, species, gender, origin, image, userId);
         res.status(200).json(createCharFav);
     } catch (error) {
         res.status(400).send({ error: error.message })
