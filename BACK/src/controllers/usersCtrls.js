@@ -5,64 +5,74 @@ const getUsers = async() => {
     return users;
 };
 
-const postUser = async(name, nickname, email, emailVerified, password) => {
-    // const [ user, created ] = await User.findOrCreate({where: { email }, defaults:{ password }});
-    // return res.status(200).json({ user, created });
-
-    // const user = new User({
-    //     name,
-    //     nickname,
-    //     email,
-    //     emailVerified
-    // });
-    const user = {
-        name,
-        nickname,
-        email,
-        emailVerified,
-        password
+const getUsersId = async(id) => {
+    try {
+        const user = await User.findByPk(id);
+        if (!user) {
+            throw new Error("ID does not exist.");
+        };        
+        return usersId;
+    } catch (error) {
+        return { error: error.message };
     }
-    const newUser = await User.create(user);
-    return newUser;
 };
 
-const putUser = async(id, name, nickname, emailVerified, active) => {
-    const update = {};
-
-    if (name !== null && name !== false) {
-        update.name = name;
+const postUser = async(name, nickname, email, emailVerified, password) => {
+    try {
+        const newUser = await User.create({
+            name: name,
+            nickname: nickname,
+            email: email,
+            emailVerified: emailVerified,
+            password: password
+        });
+        return newUser;
+        
+    } catch (error) {
+        return("Error creating user:", error);
     };
+};
 
-    if (nickname !== null && nickname !== false) {
-        update.nickname = nickname;
-    };
-
-    if (emailVerified !== null && emailVerified !== false) {
-        update.emailVerified = emailVerified;
-    };
-
-    if (active !== null && active !== false) {
-        update.active = active;
-    };
-
-    // if (Array.isArray(favorites) && favorites.length > 0) {
-    //     update.favorites = favorites;
-    // };
-    // const updated = await User.findOneAndUpdate({ _id }, update, { new: true });
-    // const updated = await User.findOneAndUpdate({ id }, { $set: { active } }, { new: true });
-
-    return update;
+const putUser = async(id, name, nickname, email, emailVerified, password, active) => {
+    try {
+        const user = await User.findByPk(id);
+        if (!user) {
+            throw new Error("User not found.");
+        };
+        const updatedUser = await user.update({
+            name: name !== null && name !== false ? name : user.name,
+            nickname: nickname !== null && nickname !== false ? nickname : user.nickname,
+            email: email !== null && email !== false ? email : user.email,
+            emailVerified: emailVerified !== undefined ? emailVerified : user.emailVerified,
+            password: password !== null && password !== false ? password : user.password,
+            active: active !== undefined ? active : user.active
+        }, { where: { id: id }
+        });
+        return updatedUser;
+        
+    } catch (error) {
+        return { error: error.message };
+    }
 };
 
 const deleteUser = async(id) => {
-    // const deleted = await User.deleteOne({id});
-    const deleted = await User.findByPk(id);
-    return deleted;
+    try {
+        const user = await User.findByPk(id);
+        if (!user || user == null) {
+            throw new Error("User not found.");
+        };
+        const deleted = await User.destroy({ where: {id: id} });
+        return `User deleted (ID: ${id}).`
+    } catch (error) {
+        return { error: error.message };
+
+    }
 };
 
 
 module.exports = {
     getUsers,
+    getUsersId,
     postUser,
     putUser,
     deleteUser

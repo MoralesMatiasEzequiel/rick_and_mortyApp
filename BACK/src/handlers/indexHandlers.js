@@ -1,5 +1,5 @@
 const { login } = require('./loginHandlers');
-const { getUsersHandler, postUserHandler, putUserHandler, deleteUserHandler} = require('./userHandlers');
+const { getUsersHandler, getUserIdHandler, postUserHandler, putUserHandler, deleteUserHandler} = require('./userHandlers');
 const { getCharactersHandler, getCharByIdHandler } = require('./charactersHandlers');
 const { getCharFavHandlers, postCharFavHandlers, deleteCharFavHandlers } = require('./favoritesHandlers');
 
@@ -7,6 +7,7 @@ const { getCharFavHandlers, postCharFavHandlers, deleteCharFavHandlers } = requi
 module.exports = {
     login, 
     getUsersHandler, 
+    getUserIdHandler,
     postUserHandler,
     putUserHandler, 
     deleteUserHandler,

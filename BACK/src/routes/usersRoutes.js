@@ -1,4 +1,4 @@
-const { getUsersHandler, postUserHandler, putUserHandler, deleteUserHandler } = require('../handlers/indexHandlers');
+const { getUsersHandler, getUserIdHandler, postUserHandler, putUserHandler, deleteUserHandler } = require('../handlers/indexHandlers');
 const usersRouter = require('express').Router();
 
 usersRouter.get('/', async (req, res) => {
@@ -18,9 +18,11 @@ usersRouter.get('/', async (req, res) => {
     return getUsersHandler(req, res);
 });
 
+usersRouter.get('/:id', getUserIdHandler);
+
 usersRouter.post('/', postUserHandler);
 
-usersRouter.put('/', putUserHandler);
+usersRouter.put('/:id', putUserHandler);
 
 usersRouter.delete('/:id', deleteUserHandler);
 

@@ -23,6 +23,18 @@ const getCharByIdHandler = async (req, res) => {
     };
 };
 
+// const getCharByIdHandler = async (req, res) => {    
+//     const { id } = req.params;
+//     try {        
+//         const characterId = await getCharById(id);
+//         if(user['error']) throw Error(characterId.error);
+//         return res.status(200).json(characterId);
+
+//     } catch (error) {
+//         return res.status(404).send(error.message); 
+//     };
+// };
+
 
 module.exports = {
     getCharactersHandler,

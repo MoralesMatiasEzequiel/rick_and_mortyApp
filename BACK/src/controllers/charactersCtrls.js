@@ -8,7 +8,8 @@ const getCharacters = async() => {
 
 const getCharById = async(id) => {
     const { data } = await axios(`${URL}/${id}`);
-    // if(!data.name) throw new Error(`ID: ${id} Not found`)
+    // if(!data) throw new Error(`ID: ${id} Not found`)
+    // if(!data) return { error: 'No existe un usuario asociado a ese ID'};
     const character = {
         id: data.id,
         name: data.name,
