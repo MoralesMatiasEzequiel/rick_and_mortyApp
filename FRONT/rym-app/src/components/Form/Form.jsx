@@ -43,7 +43,7 @@ const Form = () => {
                 {errors.password && <span>{errors.password}</span>}
             </div>
 
-            <button type='submit'>LOG IN</button>
+            <button type='submit'>LOG IN</button> {/* Hacer un onSubmit mas adelante para enviar el formulario al back al momento de crear un usuario. Ver form del PI*/}
         </form>
     )
 };
