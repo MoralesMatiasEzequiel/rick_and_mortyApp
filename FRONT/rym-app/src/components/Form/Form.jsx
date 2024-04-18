@@ -1,8 +1,10 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import validations from './validations';
+import { useSelector } from 'react-redux';
 
 const Form = () => {
+    const users = useSelector(state => state.users );
     const navigate = useNavigate();
     const [form, setForm] = useState({
         email: '',
@@ -43,7 +45,8 @@ const Form = () => {
                 {errors.password && <span>{errors.password}</span>}
             </div>
 
-            <button type='submit'>LOG IN</button> {/* Hacer un onSubmit mas adelante para enviar el formulario al back al momento de crear un usuario. Ver form del PI*/}
+            <button type='submit'>Iniciar sesión</button> {/* Hacer un onSubmit mas adelante para enviar el formulario al back al momento de crear un usuario. Ver form del PI*/}
+            {/* <Link to=''>¿Olvidaste tu contraseña?</Link> */}
         </form>
     )
 };

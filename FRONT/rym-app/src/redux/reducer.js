@@ -1,6 +1,7 @@
 import { GET_CHARACTERS, GET_CHARACTERS_DETAIL, CLEAN_DETAIL } from "./action-types";
 
 const initialState = {
+    users: [],
     characters: [],
     characterDetail: {}
 };

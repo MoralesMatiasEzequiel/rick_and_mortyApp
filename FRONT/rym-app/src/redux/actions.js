@@ -17,7 +17,5 @@ export const getCharactersDetail = (id) => {
 };
 
 export const cleanStateDetail = () => {
-    return function(dispatch){
-        return dispatch({ type: CLEAN_DETAIL })
-    };
+    return { type: CLEAN_DETAIL }
 };
