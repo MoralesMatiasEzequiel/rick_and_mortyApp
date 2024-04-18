@@ -3,7 +3,8 @@ import axios from 'axios';
 
 export const getCharacters = () => {
     return async function(dispatch){
-        const response = await axios('URL de la api');
+        const response = await axios('/');
+        // console.log(response.data.results);
         return dispatch({ type: GET_CHARACTERS, payload: response.data.characters });
     };
 };

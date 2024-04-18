@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCharacters } from "../../redux/actions";
+import Character from "../Character/Character";
 
 const Characters = () => {
     const dispatch = useDispatch();
@@ -14,6 +15,23 @@ const Characters = () => {
     return(
         <div>
             <h1>Characters</h1>
+
+            {characters.map(character => {
+                return(
+                    <Character 
+                        key={character.id}
+                        id={character.id}
+                        name={character.name}
+                        status={character.status}
+                        species={character.species}
+                        gender={character.gender}
+                        origin={character.origin.name}
+                        image={character.image}
+                    />
+                )
+            })
+
+            }
         </div>
     )
 };
