@@ -31,6 +31,12 @@ const Form = () => {
         navigate('/home');
     };
 
+    const handleLoginSubmit = (event) => {
+        event.preventDefault();  
+        navigate('/login/identify');
+
+    };
+
     return (
         <form onSubmit={handleSubmit}>
             <div>
@@ -44,9 +50,15 @@ const Form = () => {
                 <input type="text" name="password" value={form.password} onChange={handleChange} />
                 {errors.password && <span>{errors.password}</span>}
             </div>
-
-            <button type='submit'>Iniciar sesión</button> {/* Hacer un onSubmit mas adelante para enviar el formulario al back al momento de crear un usuario. Ver form del PI*/}
-            {/* <Link to=''>¿Olvidaste tu contraseña?</Link> */}
+            <div>
+                <button type='submit'>Iniciar sesión</button> {/* Hacer un onSubmit mas adelante para enviar el formulario al back al momento de crear un usuario. Ver form del PI*/}
+            </div>
+            <div>
+                <Link to='/login/identify'>¿Olvidaste tu contraseña?</Link>
+            </div>
+            <div>
+                <button type='submit' onClick={handleLoginSubmit}>Crear cuenta nueva</button>
+            </div>
         </form>
     )
 };
