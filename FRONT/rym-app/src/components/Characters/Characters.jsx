@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCharacters } from "../../redux/actions";
+import { getCharacters, cleanStateDetail } from "../../redux/actions";
 import Character from "../Character/Character";
 
 const Characters = () => {
@@ -8,8 +8,9 @@ const Characters = () => {
     const characters = useSelector(state => state.characters);
 
     useEffect(() => {
+        dispatch(cleanStateDetail());
         dispatch(getCharacters())
-    }, []);
+    }, [characters]);
 
     
     return(

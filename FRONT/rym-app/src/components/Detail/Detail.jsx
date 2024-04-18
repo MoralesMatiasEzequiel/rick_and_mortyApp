@@ -8,20 +8,20 @@ const Detail = () => {
     const { id } = useParams(); //useParams() devuelve un objeto. Dentro estara la propiedad que creamos, en este caso "id" que fue creada cuando hicimos esto: <Route path="/detail/:id" element={<Detail/>}/>. ":id" este es el nombre del params creado.
     const dispatch = useDispatch();
     const characterDetail = useSelector(state => state.characterDetail);
+    // console.log(characterDetail.name && characterDetail.name) 
 
     useEffect(() => {
-        dispatch(getCharactersDetail(id))
-    }, [id]);  //id
-// console.log(characterDetail);
+        dispatch(getCharactersDetail(id));
+    }, []); //id, characterDetail, dispatch
+
     return(
         <div>
-            <h1>{characterDetail.name}</h1>
-            <img src={characterDetail.image} alt={characterDetail.name} />
-            <p>{characterDetail.status}</p>
-            <p>{characterDetail.species}</p>
-            <p>{characterDetail.gender}</p>
-            <p>{characterDetail.origin.name}</p>
-
+            {characterDetail.name && <h1>{characterDetail.name}</h1>}
+            {characterDetail.image && <img src={characterDetail.image} alt={characterDetail.name} />}
+            {characterDetail.status && <p>{characterDetail.status}</p>}
+            {characterDetail.species && <p>{characterDetail.species}</p>}
+            {characterDetail.gender && <p>{characterDetail.gender}</p>}
+            {characterDetail.origin && <p>{characterDetail.origin.name}</p>}
         </div>
     );
 };
