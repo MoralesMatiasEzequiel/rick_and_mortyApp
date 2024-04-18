@@ -1,10 +1,17 @@
-import { GET_CHARACTERS } from "./action-types";
+import { GET_CHARACTERS, GET_CHARACTERS_DETAIL } from "./action-types";
 import axios from 'axios';
 
 export const getCharacters = () => {
     return async function(dispatch){
         const response = await axios('/');
-        // console.log(response.data.results);
-        return dispatch({ type: GET_CHARACTERS, payload: response.data.characters });
+        return dispatch({ type: GET_CHARACTERS, payload: response.data.results });
+    };
+};
+
+export const getCharactersDetail = (id) => {
+    return async function(dispatch){
+        const response = await axios(`/${id}`);
+        // console.log(response.data);
+        return dispatch({ type: GET_CHARACTERS_DETAIL, payload: response.data });
     };
 };

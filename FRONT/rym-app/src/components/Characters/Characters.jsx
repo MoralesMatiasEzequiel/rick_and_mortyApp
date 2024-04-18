@@ -9,7 +9,7 @@ const Characters = () => {
 
     useEffect(() => {
         dispatch(getCharacters())
-    }, [characters]);
+    }, []);
 
     
     return(
