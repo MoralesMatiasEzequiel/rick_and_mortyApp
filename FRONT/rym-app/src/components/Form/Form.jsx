@@ -4,7 +4,7 @@ import validations from './validations';
 import { useSelector } from 'react-redux';
 
 const Form = () => {
-    const users = useSelector(state => state.users );
+    const users = useSelector(state => state.users);
     const navigate = useNavigate();
     const [form, setForm] = useState({
         email: '',
