@@ -34,7 +34,6 @@ const Form = () => {
     const handleLoginSubmit = (event) => {
         event.preventDefault();  
         navigate('/login/identify');
-
     };
 
     return (

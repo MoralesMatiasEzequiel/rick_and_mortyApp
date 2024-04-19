@@ -1,7 +1,8 @@
-import { GET_CHARACTERS, GET_CHARACTERS_DETAIL, CLEAN_DETAIL } from "./action-types";
+import { GET_CHARACTERS, GET_CHARACTERS_DETAIL, CLEAN_DETAIL, SEARCH_EMAIL } from "./action-types";
 
 const initialState = {
     users: [],
+    userFound: [],
     characters: [],
     characterDetail: {}
 };
@@ -24,6 +25,12 @@ const reducer = (state = initialState, action) => {
             return{
                 ...state,
                 characterDetail: {}
+            }
+
+        case SEARCH_EMAIL:
+            return{
+                ...state,
+
             }
 
 

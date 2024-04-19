@@ -1,28 +1,23 @@
 // import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { searchEmail } from '../../redux/actions';
 // import validations from './validations';
 
 const Login = () => {
+    const dispatch = useDispatch()
     const navigate = useNavigate();
-    const users = useSelector(state => state.users);
+    const userFound = useSelector(state => state.userFound);
 
-    // const [form, setForm] = useState({
-    //     email: ''
-    // });
 
-    // const handleChange = (event) => {
-    //     setForm({
-    //         ...form,
-    //         [event.target.email]: event.target.value    //event.target.email
-    //     });
-    //     event.preventDefault();  
-    //     navigate('/recover/initiate');
-    // };
 
     const handleSubmit = (event) => {
         event.preventDefault();  
-        navigate('/recover/initiate');
+        dispatch(searchEmail());      
+        // if(!userFound){
+        //     return navigate('/recover/error');
+        // };
+        // navigate('/recover/initiate');
     };
 
     return(
