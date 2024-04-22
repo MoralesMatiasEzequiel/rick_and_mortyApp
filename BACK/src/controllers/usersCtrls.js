@@ -37,7 +37,7 @@ const postUser = async(name, nickname, email, emailVerified, password) => {
     };
 };
 
-const putUser = async(id, name, nickname, email, emailVerified, password, active) => {
+const putUser = async(id, name, nickname, email, emailVerified, password) => {
     try {
         const user = await User.findByPk(id);
         if (!user) {
@@ -50,14 +50,34 @@ const putUser = async(id, name, nickname, email, emailVerified, password, active
             email: email || user.email,
             emailVerified: emailVerified !== undefined ? emailVerified : user.emailVerified,
             password: password || user.password,
-            active: active !== undefined ? active : user.active
+            // active: active !== undefined ? active : user.active
         }, { where: { id: id }
         });
         return updatedUser;       
+
     } catch (error) {
         return { error: error.message };
     }
 };
+
+const putUserBanned = async(id) => {
+    try {
+        const user = await User.findByPk(id);
+
+        if (!user || user == null) {
+            throw new Error("User not found.");
+        };
+        await user.update({ active: !user.active });
+        console.log(user.active);
+        if (user.active === false) {
+            return 'Banned user.'
+        };
+        return "Active user."
+
+    } catch (error) {
+        return { error: error.message };
+    }
+}
 
 const deleteUser = async(id) => {
     try {
@@ -79,5 +99,6 @@ module.exports = {
     getUsersId,
     postUser,
     putUser,
+    putUserBanned,
     deleteUser
 };

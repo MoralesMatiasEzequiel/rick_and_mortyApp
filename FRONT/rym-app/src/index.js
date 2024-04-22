@@ -6,7 +6,7 @@ import store from './redux/store';
 import { BrowserRouter } from 'react-router-dom';
 import axios from 'axios';
 
-//axios.defaults.baseURL = "http://localhost:3001/";
+// axios.defaults.baseURL = "http://localhost:3001/characters";
 axios.defaults.baseURL = "https://rickandmortyapi.com/api/character";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

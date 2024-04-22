@@ -12,7 +12,7 @@ const Characters = () => {
         dispatch(getCharacters())
     }, [characters]);
 
-    
+    // console.log(characters);
     return(
         <div>
             <h1>Characters</h1>
