@@ -73,18 +73,15 @@ const putUserBanned = async(id) => {
 
 const deleteUser = async(id) => {
     try {
-        const user = await User.findByPk(id);
-        if (!user || user == null) {
-            throw new Error("User not found.");
-        };
+        const user = await getUsersId(id);
+
         const deleted = await User.destroy({ where: {id: id} });
         return `User deleted (ID: ${id}).`
+
     } catch (error) {
         return { error: error.message };
-
     }
 };
-
 
 module.exports = {
     getUsers,
