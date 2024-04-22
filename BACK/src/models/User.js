@@ -28,10 +28,6 @@ module.exports = (sequelize) => {
 
          */
       },
-      emailVerified:{
-         type: DataTypes.BOOLEAN(),
-         // require: true
-      },
       password:{
          type: DataTypes.STRING(),
          allowNull: false

@@ -27,16 +27,15 @@ const getUserIdHandler = async(req, res) => {
 };
 
 const postUserHandler = async(req, res) => {
-    const { name, nickname, email, emailVerified, password } = req.body; 
+    const { name, nickname, email, password } = req.body; 
     try {
-        if(!name || !nickname || !email || !emailVerified || !password){
+        if(!name || !nickname || !email || !password){
             return res.status(400).json({ error: 'Missing required data.' });
         };
         if (
             typeof name !== 'string' ||
             typeof nickname !== 'string' ||
-            typeof email !== 'string' ||
-            typeof emailVerified !== 'boolean'
+            typeof email !== 'string'
             //Falta para la pass
         ){
             return res.status(400).send({ error: 'Incorrect DataType.' });
@@ -47,7 +46,7 @@ const postUserHandler = async(req, res) => {
         //     return res.status(200).send(existUser);
         // };
 
-        const newUser = await postUser(name, nickname, email, emailVerified, password);
+        const newUser = await postUser(name, nickname, email, password);
         res.status(200).json(newUser);
 
     } catch (error) {
@@ -56,11 +55,11 @@ const postUserHandler = async(req, res) => {
 };
 
 const putUserHandler = async(req, res) => {
-    const { id, name, nickname, email, emailVerified, password } = req.body;
+    const { id, name, nickname, email, password } = req.body;
     try {
         if(!id) res.status(400).json({ error: 'Missing ID.' });
 
-        const userUpdate = await putUser(id, name, nickname, email, emailVerified, password);
+        const userUpdate = await putUser(id, name, nickname, email, password);
         res.status(200).json(userUpdate);
 
     } catch (error) {

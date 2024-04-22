@@ -21,13 +21,12 @@ const getUsersId = async(id) => {
     }
 };
 
-const postUser = async(name, nickname, email, emailVerified, password) => {
+const postUser = async(name, nickname, email, password) => {
     try {
         const newUser = await User.create({
             name: name,
             nickname: nickname,
             email: email,
-            emailVerified: emailVerified,
             password: password
         });
         return newUser;
@@ -37,7 +36,7 @@ const postUser = async(name, nickname, email, emailVerified, password) => {
     };
 };
 
-const putUser = async(id, name, nickname, email, emailVerified, password) => {
+const putUser = async(id, name, nickname, email, password) => {
     try {
         const user = await getUsersId(id);
 
@@ -45,7 +44,6 @@ const putUser = async(id, name, nickname, email, emailVerified, password) => {
             name: name || user.name,  //Si algo en name se actualiza, si no hay nada (seria undefined) no hay modificación.
             nickname: nickname || user.nickname,
             email: email || user.email,
-            emailVerified: emailVerified !== undefined ? emailVerified : user.emailVerified,
             password: password || user.password,
         }, { where: { id: id }
         });
