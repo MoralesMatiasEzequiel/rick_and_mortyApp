@@ -15,7 +15,7 @@ const getUsersId = async(id) => {
         if (!user) {
             throw new Error("There is no user related to that ID.");
         };        
-        return usersId;
+        return user;
     } catch (error) {
         return { error: error.message };
     }
@@ -39,10 +39,7 @@ const postUser = async(name, nickname, email, emailVerified, password) => {
 
 const putUser = async(id, name, nickname, email, emailVerified, password) => {
     try {
-        const user = await User.findByPk(id);
-        if (!user) {
-            throw new Error("User not found.");
-        };
+        const user = await getUsersId(id);
 
         const updatedUser = await user.update({
             name: name || user.name,  //Si algo en name se actualiza, si no hay nada (seria undefined) no hay modificación.
@@ -50,7 +47,6 @@ const putUser = async(id, name, nickname, email, emailVerified, password) => {
             email: email || user.email,
             emailVerified: emailVerified !== undefined ? emailVerified : user.emailVerified,
             password: password || user.password,
-            // active: active !== undefined ? active : user.active
         }, { where: { id: id }
         });
         return updatedUser;       
@@ -62,13 +58,9 @@ const putUser = async(id, name, nickname, email, emailVerified, password) => {
 
 const putUserBanned = async(id) => {
     try {
-        const user = await User.findByPk(id);
+        const user = await getUsersId(id);
 
-        if (!user || user == null) {
-            throw new Error("User not found.");
-        };
         await user.update({ active: !user.active });
-        console.log(user.active);
         if (user.active === false) {
             return 'Banned user.'
         };

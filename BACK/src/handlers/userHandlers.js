@@ -56,7 +56,6 @@ const postUserHandler = async(req, res) => {
 };
 
 const putUserHandler = async(req, res) => {
-    // const { id } = req.params;
     const { id, name, nickname, email, emailVerified, password } = req.body;
     try {
         if(!id) res.status(400).json({ error: 'Missing ID.' });
