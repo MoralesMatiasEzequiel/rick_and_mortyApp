@@ -4,7 +4,8 @@ import axios from 'axios';
 export const getCharacters = () => {
     return async function(dispatch){
         const response = await axios('/');
-        return dispatch({ type: GET_CHARACTERS, payload: response.data.results });
+        return dispatch({ type: GET_CHARACTERS, payload: response.data });
+        // return dispatch({ type: GET_CHARACTERS, payload: response.data.results });
     };
 };
 
@@ -20,7 +21,6 @@ export const cleanStateDetail = () => {
     return { type: CLEAN_DETAIL };
 };
 
-export const searchEmail = () => {
-    
+export const searchEmail = () => {  
     return { type: SEARCH_EMAIL };
 }
