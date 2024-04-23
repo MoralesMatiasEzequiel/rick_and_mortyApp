@@ -30,13 +30,26 @@ const Form = () => {
 
     const handleSubmit = (event) => {        
         event.preventDefault();  
-        console.log(users);
-        if (form.email === users.email && form.password === users.password) {
-            // dispatch(changeStateLogged());
-            navigate('/home');
-        } else {
+        const userFound = [];
+        // console.log(users);
+        users.forEach(user => {
+            if(form.email === user.email && form.password === user.password) {
+                return userFound.push(user);
+            }
+        });
+        // console.log(userFound);
+
+        if (!userFound.length) {
             alert('El email o el password son incorrectos.');
+            return navigate('/login');
         }
+        // if (form.email === userFound[0].email && form.password === userFound[0].password) {
+        //     // dispatch(changeStateLogged());
+        //     navigate('/home');
+        // } else {
+        //     alert('El email o el password son incorrectos.');
+        //     // navigate('/login');
+        // }
         navigate('/home');
 
     };
