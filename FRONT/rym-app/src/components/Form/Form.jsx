@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import validations from './validations';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { getUsers } from '../../redux/actions';
 
 const Form = () => {
     const users = useSelector(state => state.users);
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const [form, setForm] = useState({
         email: '',
@@ -26,15 +28,24 @@ const Form = () => {
         }))
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = (event) => {        
         event.preventDefault();  
+        console.log(users);
+        if (form.email === users.email && form.password === users.password) {
+            // dispatch(changeStateLogged());
+            navigate('/home');
+        } else {
+            alert('El email o el password son incorrectos.');
+        }
         navigate('/home');
+
     };
 
     const handleLoginSubmit = (event) => {
         event.preventDefault();  
         navigate('/login/identify');
     };
+    // console.log(users);
 
     return (
         <form onSubmit={handleSubmit}>

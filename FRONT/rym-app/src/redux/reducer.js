@@ -1,4 +1,4 @@
-import { GET_CHARACTERS, GET_CHARACTERS_DETAIL, CLEAN_DETAIL, SEARCH_EMAIL } from "./action-types";
+import { GET_CHARACTERS, GET_CHARACTERS_DETAIL, CLEAN_DETAIL, GET_USERS, SEARCH_EMAIL } from "./action-types";
 
 const initialState = {
     users: [],
@@ -26,6 +26,12 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 characterDetail: {}
             }
+
+        case GET_USERS:
+            return{
+                ...state,
+                users: action.payload
+            }    
 
         case SEARCH_EMAIL:
             return{
