@@ -1,13 +1,9 @@
-import { useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
-import { getUsers } from '../../redux/actions';
+import { useNavigate } from 'react-router-dom';
 
 const Landing = () => {
-    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const handleChange = () => {
-        dispatch(getUsers());
         navigate('/login');
     };
     return (
