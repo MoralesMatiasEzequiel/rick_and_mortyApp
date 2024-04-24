@@ -45,6 +45,8 @@ const Login = () => {
         navigate('/recover/initiate');
     };
 
+    const isDisabled = form.email === '';
+
     return(
         <form onSubmit={handleSubmit}>
             <div>
@@ -55,7 +57,7 @@ const Login = () => {
                     <input type="text" name="email" value={form.email} onChange={handleChange} placeholder="Correo electrónico" />
                 </div>
                 <div>
-                    <button onClick={handleSubmit}>Buscar</button>
+                    <button onClick={handleSubmit} disabled={isDisabled}>Buscar</button>
                 </div>
             </div>
         </form>

@@ -60,29 +60,31 @@ const Form = () => {
         navigate('/home');
     };
 
+    const isDisabled = form.name === '' || form.password === '';
+
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label htmlFor="email">Email: </label>
-                <input type="text" name="email" value={form.email} onChange={handleChange} />
-                {errors.email && <span>{errors.email}</span>}
-            </div>
-            <hr />
-            <div>
-                <label htmlFor="password">Password: </label>
-                <input type="text" name="password" value={form.password} onChange={handleChange} />
-                {errors.password && <span>{errors.password}</span>}
-            </div>
-            <div>
-                <button type='submit'>Iniciar sesión</button> 
-            </div>
-            <div>
-                <Link to='/login/identify'>¿Olvidaste tu contraseña?</Link>
-            </div>
-            <div>
-                <button>Crear cuenta nueva</button>
-            </div>
-        </form>
+        <div>
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <label htmlFor="email">Email: </label>
+                    <input type="text" name="email" value={form.email} onChange={handleChange} />
+                    {errors.email && <span>{errors.email}</span>}
+                </div>
+                <hr />
+                <div>
+                    <label htmlFor="password">Password: </label>
+                    <input type="text" name="password" value={form.password} onChange={handleChange} />
+                    {errors.password && <span>{errors.password}</span>}
+                </div>
+                <div>
+                    <button type='submit' disabled={isDisabled}>Iniciar sesión</button> 
+                </div>
+                <div>
+                    <Link to='/login/identify'>¿Olvidaste tu contraseña?</Link>
+                </div>
+            </form>
+            <button>Crear cuenta nueva</button>
+        </div>
     )
 };
 
