@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import validations from './validations';
 import { useSelector, useDispatch } from 'react-redux';
 import { getUsers } from '../../redux/actions';
+import validations from './validations';
 
 const Form = () => {
     const users = useSelector(state => state.users);
@@ -39,20 +39,15 @@ const Form = () => {
                 return userFound.push(user);
             }
         });
-
         if (!userFound.length) {
-            alert('El email o el password son incorrectos.');
+            alert('The email or password is incorrect.');
+            return navigate('/login');
+        }
+        if(userFound[0].active === false){
+            alert('The user was banned, log in with another user.');
             return navigate('/login');
         }
         navigate('/home');
-
-        // if (form.email === userFound[0].email && form.password === userFound[0].password) {
-        //     // dispatch(changeStateLogged());
-        //     navigate('/home');
-        // } else {
-        //     alert('El email o el password son incorrectos.');
-        //     // navigate('/login');
-        // }
     };
 
     const handleLoginSubmit = (event) => {
@@ -74,13 +69,13 @@ const Form = () => {
                 {errors.password && <span>{errors.password}</span>}
             </div>
             <div>
-                <button type='submit'>Iniciar sesión</button> {/* Hacer un onSubmit mas adelante para enviar el formulario al back al momento de crear un usuario. Ver form del PI*/}
+                <button type='submit'>Iniciar sesión</button> 
             </div>
             <div>
                 <Link to='/login/identify'>¿Olvidaste tu contraseña?</Link>
             </div>
             <div>
-                <button type='submit' onClick={handleLoginSubmit}>Crear cuenta nueva</button>
+                <button type='submit' onClick={handleLoginSubmit}>Crear cuenta nueva</button> {/* Hacer un onSubmit mas adelante para enviar el formulario al back al momento de crear un usuario. Ver form del PI*/}
             </div>
         </form>
     )
