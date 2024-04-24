@@ -1,4 +1,4 @@
-import { GET_CHARACTERS, GET_CHARACTERS_DETAIL, CLEAN_DETAIL, GET_USERS, SEARCH_EMAIL } from "./action-types";
+import { GET_CHARACTERS, GET_CHARACTERS_DETAIL, CLEAN_DETAIL, GET_USERS } from "./action-types";
 import axios from 'axios';
 
 export const getCharacters = () => {
@@ -25,8 +25,4 @@ export const getUsers = () => {
 
 export const cleanStateDetail = () => {
     return { type: CLEAN_DETAIL };
-};
-
-export const searchEmail = () => {  
-    return { type: SEARCH_EMAIL };
 };

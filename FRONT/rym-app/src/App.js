@@ -15,7 +15,7 @@ function App() {
         <Route path="/login" element={<Form/>} />
         <Route path="/login/identify" element={<Login/>}/>
         <Route path="/recover/initiate" element={<Recover/>}/>
-        <Route path="/recover/error" element={<Recover/>}/>
+        {/* <Route path="/recover/error" element={<Recover/>}/> */}
         <Route path="/home" element={<Characters/>} />
         <Route path="/detail/:id" element={<Detail/>}/>
       </Routes>
