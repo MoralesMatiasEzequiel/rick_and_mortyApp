@@ -34,10 +34,12 @@ const Login = () => {
         });
         if (!userFound.length) {
             alert('Este correo no existe.');
+            setForm({email: ''});
             return navigate('/login/identify');
         }
         if(userFound[0].active === false){
             alert('The user was banned, log in with another user.');
+            setForm({email: ''});
             return navigate('/login/identify');
         }
         navigate('/recover/initiate');

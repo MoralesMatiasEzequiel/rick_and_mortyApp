@@ -44,10 +44,17 @@ const Form = () => {
         });
         if (!userFound.length) {
             alert('The email or password is incorrect.');
+            setForm({
+                ...form,
+                password: ''});
             return navigate('/login');
         }
         if(userFound[0].active === false){
             alert('The user was banned, log in with another user.');
+            setForm({
+                email: '',
+                password: ''
+            })
             return navigate('/login');
         }
         navigate('/home');
