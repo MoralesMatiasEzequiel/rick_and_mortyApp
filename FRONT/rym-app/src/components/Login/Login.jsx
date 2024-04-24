@@ -9,7 +9,6 @@ const Login = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const users = useSelector(state => state.users);
-    // console.log(users);
 
     useEffect(() => {
         dispatch(getUsers())
@@ -43,14 +42,6 @@ const Login = () => {
             return navigate('/login/identify');
         }
         navigate('/recover/initiate');
-
-        // users.forEach(user => {
-        //     if(form.email === user.email) {
-        //         return navigate('/recover/initiate')
-        //     }
-        // });
-        // alert('Este correo no existe.')
-        // return navigate('/login/identify');
     };
 
     return(
@@ -63,7 +54,6 @@ const Login = () => {
                     <input type="text" name="email" value={form.email} onChange={handleChange} placeholder="Correo electrónico" />
                 </div>
                 <div>
-                    {/* <button onChange={handleChange}>Buscar</button> */}
                     <button onClick={handleSubmit}>Buscar</button>
                 </div>
             </div>
