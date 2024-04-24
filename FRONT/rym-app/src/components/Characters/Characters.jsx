@@ -10,9 +10,8 @@ const Characters = () => {
     useEffect(() => {
         dispatch(cleanStateDetail());
         dispatch(getCharacters())
-    }, [characters]);
+    }, []);  //array de dependencia = characters. Agregar esto cuando se termine la app.
 
-    // console.log(characters);
     return(
         <div>
             <h1>Characters</h1>

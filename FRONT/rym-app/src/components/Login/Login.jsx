@@ -1,40 +1,73 @@
 // import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { searchEmail } from '../../redux/actions';
+import { getUsers } from '../../redux/actions';
 // import validations from './validations';
 
 const Login = () => {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const navigate = useNavigate();
-    const userFound = useSelector(state => state.userFound);
+    const users = useSelector(state => state.users);
+    // console.log(users);
 
+    useEffect(() => {
+        dispatch(getUsers())
+    }, []);  //array de dependencia = users. Agregar una vez qe terminemos la app.
 
+    const [form, setForm] = useState({
+        email: ''
+    });
+
+    const handleChange = (event) => {
+        setForm({
+            ...form,
+            [event.target.name]: event.target.value    
+        })
+    };
 
     const handleSubmit = (event) => {
         event.preventDefault();  
-        dispatch(searchEmail());      
-        // if(!userFound){
-        //     return navigate('/recover/error');
-        // };
-        // navigate('/recover/initiate');
+        const userFound = [];
+        users.forEach(user => {
+            if(form.email === user.email) {
+                return userFound.push(user);
+            }
+        });
+        if (!userFound.length) {
+            alert('Este correo no existe.');
+            return navigate('/login/identify');
+        }
+        if(userFound[0].active === false){
+            alert('The user was banned, log in with another user.');
+            return navigate('/login/identify');
+        }
+        navigate('/recover/initiate');
+
+        // users.forEach(user => {
+        //     if(form.email === user.email) {
+        //         return navigate('/recover/initiate')
+        //     }
+        // });
+        // alert('Este correo no existe.')
+        // return navigate('/login/identify');
     };
 
     return(
-        <div>
-            <h2>Recupera tu cuenta</h2>
-            <p>Ingresa tu correo electrónico para buscar tu cuenta.</p>
+        <form onSubmit={handleSubmit}>
             <div>
-                <label htmlFor="email" />
-                {/* <input type="text" name="email" value={form.email} placeholder="Correo electrónico" /> */}
-
-                <input type="text" name="email" placeholder="Correo electrónico" />
+                <h2>Recupera tu cuenta</h2>
+                <p>Ingresa tu correo electrónico para buscar tu cuenta.</p>
+                <div>
+                    <label htmlFor="email" />
+                    <input type="text" name="email" value={form.email} onChange={handleChange} placeholder="Correo electrónico" />
+                </div>
+                <div>
+                    {/* <button onChange={handleChange}>Buscar</button> */}
+                    <button onClick={handleSubmit}>Buscar</button>
+                </div>
             </div>
-            <div>
-                {/* <button onChange={handleChange}>Buscar</button> */}
-                <button onClick={handleSubmit}>Buscar</button>
-            </div>
-        </div>
+        </form>
     )
 };
 

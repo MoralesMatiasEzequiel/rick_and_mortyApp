@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getUsers } from '../../redux/actions';
@@ -9,7 +9,10 @@ const Form = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    dispatch(getUsers());
+    // dispatch(getUsers());
+    useEffect(() => {
+        dispatch(getUsers())
+    }, []);  //array de dependencia = users. Agregar una vez qe terminemos la app.
 
     const [form, setForm] = useState({
         email: '',
