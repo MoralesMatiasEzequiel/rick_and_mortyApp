@@ -4,7 +4,9 @@ const initialState = {
     users: [],
     userFound: [],
     characters: [],
-    characterDetail: {}
+    characterDetail: {},
+    favoritesCharacters: [],
+    AllFavoritesCharacters: []
 };
 
 const reducer = (state = initialState, action) => {
