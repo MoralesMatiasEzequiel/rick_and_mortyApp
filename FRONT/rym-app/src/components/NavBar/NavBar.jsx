@@ -1,8 +1,15 @@
+import SearchBar from "../SearchBar/SearchBar";
+
 const NavBar = () => {
 
     return(
         <div>
-            <span>Esta sera la navBar</span>
+            <div>
+                <span>---Esta sera la navBar---</span>
+            </div>
+            <div>
+                <SearchBar/>
+            </div>
         </div>
     )
 };
