@@ -4,6 +4,7 @@ import Login from "./components/Login/Login";
 import Recover from "./components/Login/Recover/Recover";
 import Characters from "./components/Characters/Characters";
 import Detail from "./components/Detail/Detail";
+import Favorites from "./components/Favorites/Favorites";
 import { Routes, Route } from 'react-router-dom';
 
 
@@ -18,6 +19,7 @@ function App() {
         {/* <Route path="/recover/error" element={<Recover/>}/> */}
         <Route path="/home" element={<Characters/>} />
         <Route path="/detail/:id" element={<Detail/>}/>
+        <Route path="/favorites" element={<Favorites/>} />
       </Routes>
     </div>
   );
