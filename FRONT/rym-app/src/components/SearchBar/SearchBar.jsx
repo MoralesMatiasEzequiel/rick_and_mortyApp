@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from "react-router-dom";
 import { getCharactersDetail } from '../../redux/actions';
 
 
 const SearchBar = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [idChar, setIdChar] = useState('');
 
     const handleChange = (event) => {
@@ -12,8 +14,15 @@ const SearchBar = () => {
     };
 
     const handleSearch = async () => {
+        // console.log(dispatch(getCharactersDetail(idChar)));
+        if(await dispatch(getCharactersDetail(idChar)) === false){
+            alert('No existe personaje con este ID.')
+            setIdChar('');
+            return navigate('/home');
+        }
         dispatch(getCharactersDetail(idChar))
         setIdChar('');
+        navigate(`/detail/${idChar}`);
     }
 
     return(

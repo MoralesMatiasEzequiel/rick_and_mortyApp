@@ -19,7 +19,18 @@ export const getCharacters = () => {
 export const getCharactersDetail = (id) => {
     return async function(dispatch){
         const response = await axios(`/characters/${id}`);
-        return dispatch({ type: GET_CHARACTERS_DETAIL, payload: response.data });
+        // console.log(response.data);
+        try {
+            if (!response.data.name) {
+                return false;
+            }
+            // res.status(200).json(dispatch({ type: GET_CHARACTERS_DETAIL, payload: response.data }));
+            return dispatch({ type: GET_CHARACTERS_DETAIL, payload: response.data });
+            
+        } catch (error) {
+            // res.status(400).send({ error: error.message })
+            return error.message;
+        }
     };
 };
 
