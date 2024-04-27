@@ -1,4 +1,4 @@
-import { GET_USERS, GET_CHARACTERS, GET_CHARACTERS_DETAIL, CLEAN_DETAIL, ADD_FAV, REMOVE_FAV } from "./action-types";
+import { GET_USERS, GET_CHARACTERS, GET_CHARACTERS_DETAIL, CLEAN_DETAIL, ADD_FAV, REMOVE_FAV, NEXT_PAGE, PREV_PAGE, CHANGE_PAG } from "./action-types";
 import axios from 'axios';
 
 export const getUsers = () => {
@@ -34,3 +34,21 @@ export const cleanStateDetail = () => {
     return { type: CLEAN_DETAIL };
 };
 
+
+export const nextPage = () => {
+    return {
+        type: NEXT_PAGE
+    }
+}
+export const prevPage = () => {
+    return {
+        type: PREV_PAGE
+    }
+}
+
+export const changePag = (pagenumber) => {
+    return {
+        type: CHANGE_PAG,
+        payload: pagenumber++
+    }
+};

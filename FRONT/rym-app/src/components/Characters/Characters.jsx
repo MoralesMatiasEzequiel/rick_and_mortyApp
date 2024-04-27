@@ -1,17 +1,9 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getCharacters, cleanStateDetail } from "../../redux/actions";
+import { useSelector } from "react-redux";
 import Paginado from "../Paginado/Paginado";
 import Character from "../Character/Character";
 
 const Characters = () => {
-    const dispatch = useDispatch();
     const characters = useSelector(state => state.characters);
-
-    useEffect(() => {
-        dispatch(cleanStateDetail());
-        dispatch(getCharacters());
-    }, [dispatch]);  
 
     const getRandomCharacters = () => {
         const shuffledCharacters = characters.sort(() => Math.random() - 0.5);

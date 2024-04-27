@@ -5,3 +5,6 @@ export const CLEAN_DETAIL = 'CLEAN_DETAIL';
 // export const GET_FAV = 'GET_FAV';
 export const ADD_FAV = 'ADD_FAV';
 export const REMOVE_FAV = 'REMOVE_FAV';
+export const NEXT_PAGE = "NEXT_PAGE";
+export const PREV_PAGE = "PREV_PAGE";
+export const CHANGE_PAG = "CHANGE_PAG";
