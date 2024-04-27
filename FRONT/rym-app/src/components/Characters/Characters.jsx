@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCharacters, cleanStateDetail } from "../../redux/actions";
+import Paginado from "../Paginado/Paginado";
 import Character from "../Character/Character";
 
 const Characters = () => {
@@ -20,6 +21,7 @@ const Characters = () => {
     return (
         <div>
             <h1>Characters</h1>
+            <Paginado/>
             {getRandomCharacters().map(character => (
                 <Character 
                     key={character.id}

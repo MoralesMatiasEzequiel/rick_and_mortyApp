@@ -6,7 +6,8 @@ const initialState = {
     characters: [],
     characterDetail: {},
     favoritesCharacters: [],
-    AllFavoritesCharacters: []
+    AllFavoritesCharacters: [],
+    currentPage: 1
 };
 
 const reducer = (state = initialState, action) => {
