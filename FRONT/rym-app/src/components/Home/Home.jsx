@@ -11,12 +11,15 @@ const Home = () => {
         dispatch(cleanStateDetail());
         dispatch(getCharacters());
     }, [dispatch]); 
+
     return(
         <div>
             <div>
                 <NavBar/>
             </div>
-            <Characters/>
+            <div>
+                <Characters/>
+            </div>
         </div>
     );
 };

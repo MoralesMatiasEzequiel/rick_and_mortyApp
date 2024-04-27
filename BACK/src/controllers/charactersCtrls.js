@@ -2,8 +2,9 @@ const { URL } = process.env;
 const axios = require('axios')
 
 const getCharacters = async() => {
+    const randomNumberPage = Math.floor(Math.random() * 42) + 1;
     try {
-        const { data } = await axios(`${URL}`)
+        const { data } = await axios(`${URL}?page=${randomNumberPage}`);
         return data.results;
     } catch (error) {
         return { error: error.message };
