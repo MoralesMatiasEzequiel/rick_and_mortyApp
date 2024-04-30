@@ -8,8 +8,8 @@ const Home = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(cleanStateDetail());
         dispatch(getCharacters());
+        dispatch(cleanStateDetail());
     }, [dispatch]); 
 
     return(

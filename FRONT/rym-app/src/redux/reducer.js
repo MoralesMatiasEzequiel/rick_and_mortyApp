@@ -15,7 +15,7 @@ const reducer = (state = initialState, action) => {
         case GET_CHARACTERS:
             return {
                 ...state,
-                characters: action.payload
+                characters: state.characters.length ? state.characters : action.payload
             }
 
         case GET_CHARACTERS_DETAIL:

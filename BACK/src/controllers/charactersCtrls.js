@@ -1,14 +1,39 @@
 const { URL } = process.env;
 const axios = require('axios')
 
-const getCharacters = async() => {
-    const randomNumberPage = Math.floor(Math.random() * 42) + 1;
+// const getCharacters = async() => {
+//     const randomNumberPage = Math.floor(Math.random() * 42) + 1;
+//     try {
+//         const { data } = await axios(`${URL}?page=${randomNumberPage}`);
+//         return data.results;
+//     } catch (error) {
+//         return { error: error.message };
+//     };
+// };
+
+// const getCharacters = async () => {
+//     const characters = [];
+//     try {
+//         for (let i = 1; i <= 42; i++) {
+//             const { data } = await axios(`${URL}?page=${i}`);
+//             characters.push(...data.results);
+//         }
+//         console.log(characters);
+//         return characters;
+//     } catch (error) {
+//         return { error: error.message };
+//     }
+// };
+
+const getCharacters = async () => {
     try {
-        const { data } = await axios(`${URL}?page=${randomNumberPage}`);
-        return data.results;
+        const requests = Array.from({ length: 42 }, (_, index) => axios(`${URL}?page=${index + 1}`));
+        const responses = await Promise.all(requests);
+        const characters = responses.flatMap(response => response.data.results);
+        return characters;
     } catch (error) {
         return { error: error.message };
-    };
+    }
 };
 
 const getCharById = async(id) => {
