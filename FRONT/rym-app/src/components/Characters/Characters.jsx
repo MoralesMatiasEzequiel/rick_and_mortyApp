@@ -8,8 +8,6 @@ const Characters = () => {
     const currentPage = useSelector(state => state.currentPage);
     const [randomCharacters, setRandomCharacters] = useState([]);
 
-    // console.log(characters);
-
     let start = (currentPage - 1) * 12;
     let end = currentPage * 12;
     let cantPages = Math.floor(characters.length / 12);
